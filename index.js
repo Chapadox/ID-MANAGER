@@ -23,6 +23,7 @@ GuiPlanos.settings.window.title = "Planos";
 GuiPlanos.settings.window.centered = true; // GUI starts at the center of the screen
 
 let tempoDeRecarregamento = 120000
+const inter = setInterval(() => {window.location.reload()}, tempoDeRecarregamento);
 const valorDeRecarregamentoEmMinutos = tempoDeRecarregamento / 60000
 
 // CRIANDO GUI
@@ -77,6 +78,10 @@ GuiPlanos.addPage("Planos", `
 // INICIANDO GUI E ADICIONANDO FUNÇÃO AOS BOTÕES.
 Gui.open(() =>{
     recarregamentoAutomatico(tempoDeRecarregamento);
+    Gui.event("button-2", 'click', () => {
+        clearInterval(inter);
+        Gui.window.alert(`Recarregamento Automatico parado.`)
+    });
     Gui.event("button-planos", 'click', () => {
         MostrarPlanos()
     });
@@ -93,11 +98,6 @@ function recarregamentoAutomatico(value) {
     Gui.event("button-1", 'click', () => {
         setInterval(() => {window.location.reload()}, value);
         Gui.window.alert(`Recarregamento automatico inicido com ${valorDeRecarregamentoEmMinutos} minutos`)
-
-    Gui.event("button-2", 'click', () => {
-        clearInterval(inter);
-        Gui.window.alert(`Recarregamento Automatico parado.`)
-        });
     });
 };
 
@@ -109,6 +109,6 @@ function MostrarPlanos () {
     })
 }
 
-const inter = setInterval(() => {window.location.reload()}, tempoDeRecarregamento);
+
 
 // BY: DESTR00
