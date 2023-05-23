@@ -78,10 +78,6 @@ GuiPlanos.addPage("Planos", `
 // INICIANDO GUI E ADICIONANDO FUNÇÃO AOS BOTÕES.
 Gui.open(() =>{
     recarregamentoAutomatico(tempoDeRecarregamento);
-    Gui.event("button-2", 'click', () => {
-        clearInterval(inter);
-        Gui.window.alert(`Recarregamento Automatico parado.`)
-    });
     Gui.event("button-planos", 'click', () => {
         MostrarPlanos()
     });
@@ -98,6 +94,10 @@ function recarregamentoAutomatico(value) {
     Gui.event("button-1", 'click', () => {
         setInterval(() => {window.location.reload()}, value);
         Gui.window.alert(`Recarregamento automatico inicido com ${valorDeRecarregamentoEmMinutos} minutos`)
+    });
+    Gui.event("button-2", 'click', () => {
+        clearInterval(inter);
+        Gui.window.alert(`Recarregamento Automatico parado.`)
     });
 };
 
